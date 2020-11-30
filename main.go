@@ -34,7 +34,7 @@ func main() {
 			// FYI: Response transformation.
 			httpRes, err := httpadapter.TransformResponse(httpRec.Result(), func(response *http.Response) bool {
 				if ct := response.Header.Get("content-type"); strings.HasPrefix(ct, "image") {
-					log.Printf("content type %q treated as image; encoding...")
+					log.Printf("content type %q treated as image; encoding...", ct)
 					return true
 				}
 				return false
