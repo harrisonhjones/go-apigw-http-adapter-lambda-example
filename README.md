@@ -4,8 +4,16 @@ Example AWS Lambda function utilizing the
 [harrisonhjones.com/go-apigw-http-adapter](https://github.com/harrisonhjones/go-apigw-http-adapter)
 package.
 
+## Badges
+
+- Build:
+  ![Build](https://github.com/harrisonhjones/go-apigw-http-adapter-lambda-example/workflows/Go/badge.svg)
+- Report Card:
+  [![Go Report Card](https://goreportcard.com/badge/harrisonhjones.com/go-apigw-http-adapter-lambda-example)](https://goreportcard.com/report/harrisonhjones.com/go-apigw-http-adapter-lambda-example)
+
 ## Links
 
+- [pkg.go.dev (documentation)](https://pkg.go.dev/harrisonhjones.com/go-apigw-http-adapter-lambda-example)
 - [Demo](https://lzqz36hhb4.execute-api.us-east-1.amazonaws.com)
 
 ## Testing
