@@ -4,6 +4,10 @@
 *.dll
 *.so
 *.dylib
+go-apigw-http-adapter-lambda-example
+
+# ZIP files containing binaries.
+*.zip
 
 # Test binary, built with `go test -c`
 *.test
