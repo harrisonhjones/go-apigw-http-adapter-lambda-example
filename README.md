@@ -1,11 +1,12 @@
 # go-apigw-http-adapter-lambda-example
 
 Example AWS Lambda function utilizing the
-harrisonhjones.com/go-apigw-http-adapter-lambda-example package.
+[harrisonhjones.com/go-apigw-http-adapter](https://github.com/harrisonhjones/go-apigw-http-adapter)
+package.
 
-## Demo
+## Links
 
-https://lzqz36hhb4.execute-api.us-east-1.amazonaws.com
+- [Demo](https://lzqz36hhb4.execute-api.us-east-1.amazonaws.com)
 
 ## Testing
 
@@ -18,17 +19,17 @@ https://lzqz36hhb4.execute-api.us-east-1.amazonaws.com
 ### Running Locally
 
 1. Run `./go-apigw-http-adapter-lambda-example`.
-   1. Open https://localhost:8080 in your brower.
-   1. You should see a webpage server from `/`, an image, and a favicon (see the
-      demo above).
+   1. Open http://localhost:8080 in your brower.
+   1. You should see a web page served, an image, and a favicon (see the demo
+      above).
 
 ### Deploying to Lambda and API Gateway
 
 1. Run
    `zip go-apigw-http-adapter-lambda-example go-apigw-http-adapter-lambda-example`.
-   This should created a `go-apigw-http-adapter-lambda-example.zip` file.
+   This should create a `go-apigw-http-adapter-lambda-example.zip` file.
 1. Create a new AWS Lambda function using the AWS Lambda console.
-1. Make sure the `Go 1.x` runtime is chosen.
+   1. Make sure the `Go 1.x` runtime is chosen.
 1. Upload the `go-apigw-http-adapter-lambda-example.zip` file to the Lambda
    function.
 1. Update the handler to be `go-apigw-http-adapter-lambda-example`.
