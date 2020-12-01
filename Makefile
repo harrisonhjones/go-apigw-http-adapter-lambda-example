@@ -4,12 +4,12 @@ release: clean fmt vet test build zip
 
 .PHONY: clean
 clean:
-	rm -f go-apigw-http-adapter-lambda-example
-	rm -f go-apigw-http-adapter-lambda-example.zip
+	rm -fr bin
 
 .PHONY: build
 build:
-	go build -v ./...
+	mkdir -p bin
+	go build -v -o bin ./...
 
 .PHONY: fmt
 fmt:
@@ -24,5 +24,6 @@ vet:
 	go vet -v ./...
 
 .PHONY: zip
-zip:
-	zip go-apigw-http-adapter-lambda-example.zip go-apigw-http-adapter-lambda-example
+zip: build
+	cd bin && zip httpapi.zip httpapi
+	cd bin && zip restapi.zip restapi

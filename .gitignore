@@ -4,7 +4,7 @@
 *.dll
 *.so
 *.dylib
-go-apigw-http-adapter-lambda-example
+bin
 
 # ZIP files containing binaries.
 *.zip

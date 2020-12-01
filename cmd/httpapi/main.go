@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/aws/aws-lambda-go/lambda"
+	example "harrisonhjones.com/go-apigw-http-adapter-lambda-example"
 	"harrisonhjones.com/go-apigw-http-adapter/httpadapter"
 )
 
@@ -21,6 +22,8 @@ func main() {
 
 	if os.Getenv("AWS_LAMBDA_FUNCTION_NAME") != "" {
 		lambda.Start(func(ctx context.Context, req httpadapter.Request) (*httpadapter.Response, error) {
+			log.Printf("Request: %#v", req)
+
 			// FYI: Request transformation.
 			httpReq, err := httpadapter.TransformRequest(ctx, req)
 			if err != nil {
@@ -43,6 +46,7 @@ func main() {
 				return nil, err
 			}
 
+			log.Printf("Response: %#v", httpRes)
 			return httpRes, nil
 		})
 	} else {
@@ -59,17 +63,17 @@ func IndexHandler(writer http.ResponseWriter, _ *http.Request) {
 <html>
   <head>
     <title>Hello World</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
 
   <body>
     <h1>Hello world!</h1>
     <p>
-      This is the "/" handler from
+      This is the HTTP API "/" handler from
       https://github.com/harrisonhjones/go-apigw-http-adapter-lambda-example.
     </p>
     <br />
-    <img src="/project.png" />
+    <img src="project.png" />
     <br />
     <small>
       <p>
@@ -86,10 +90,10 @@ func IndexHandler(writer http.ResponseWriter, _ *http.Request) {
 
 func FaviconHandler(writer http.ResponseWriter, _ *http.Request) {
 	writer.Header().Set("content-type", "image/svg+xml")
-	writer.Write(favicondotsvg)
+	writer.Write(example.Favicondotsvg)
 }
 
 func ImageHandler(writer http.ResponseWriter, _ *http.Request) {
 	writer.Header().Set("content-type", "image/png")
-	writer.Write(projectdotpng)
+	writer.Write(example.Projectdotpng)
 }

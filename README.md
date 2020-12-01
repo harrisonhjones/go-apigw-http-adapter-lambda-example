@@ -2,7 +2,7 @@
 
 Example AWS Lambda function utilizing the
 [harrisonhjones.com/go-apigw-http-adapter](https://github.com/harrisonhjones/go-apigw-http-adapter)
-package.
+package for both HTTP and REST APIs.
 
 ## Badges
 
@@ -14,7 +14,8 @@ package.
 ## Links
 
 - [pkg.go.dev (documentation)](https://pkg.go.dev/harrisonhjones.com/go-apigw-http-adapter-lambda-example)
-- [Demo](https://lzqz36hhb4.execute-api.us-east-1.amazonaws.com)
+- [HTTP API Demo](https://nhovle879a.execute-api.us-east-1.amazonaws.com)
+- [REST API Demo](https://qcgmmbbci5.execute-api.us-east-1.amazonaws.com/test/home)
 
 ## Contributing
 
@@ -31,29 +32,51 @@ package.
 ### Building
 
 1. Git clone this project.
-1. Run `make`. Two files will be created:
-   1. The `go-apigw-http-adapter-lambda-example` binary.
-   1. The `go-apigw-http-adapter-lambda-example.zip` file containing the above
-      binary.
+1. Run `make`. Two binaries and zip files will be created in the `bin`
+   directory.
 
 ### Running Locally
 
-1. Run `./go-apigw-http-adapter-lambda-example`.
+#### HTTP API
+
+1. Run `./bin/httpapi` to
    1. Open http://localhost:8080 in your browser.
    1. You should see a web page served, an image, and a favicon (see the demo
       above).
 
+#### REST API
+
+1. Run `./bin/restapi` to
+1. Open http://localhost:8080/home in your browser.
+1. You should see a web page served, an image, and a favicon (see the demo
+   above).
+
 ### Deploying to Lambda and API Gateway
+
+#### HTTP API
 
 1. Create a new AWS Lambda function using the AWS Lambda console.
    1. Make sure the `Go 1.x` runtime is chosen.
-1. Upload the `go-apigw-http-adapter-lambda-example.zip` file to the Lambda
-   function.
-1. Update the handler to be `go-apigw-http-adapter-lambda-example`.
+1. Upload the `httpapi.zip` file to the Lambda function.
+1. Update the handler to be `httpapi`.
 1. Create a new **HTTP** API in the AWS API Gateway console.
 1. Set the integration to the Lambda function created earlier.
    1. Make sure the version is `2.0`.
 1. Create a route with path `$default`.
    1. This will set the "method" to `ANY`.
 1. Leave all the other options as the defaults.
-1. Create the API and test it.
+1. Create the API and test it by going to `INVOKEURL`.
+
+#### REST API
+
+1. Create a new AWS Lambda function using the AWS Lambda console.
+   1. Make sure the `Go 1.x` runtime is chosen.
+1. Upload the `restapi.zip` file to the Lambda function.
+1. Update the handler to be `restapi`.
+1. Create a new **REST** API in the AWS API Gateway console.
+1. Create a new method set to use the Lambda function created earlier.
+   1. Make sure it's setup to be a proxy integration.
+1. Set the `Binary Media Types` to `image/*`.
+1. Deploy the method using any stage name.
+1. Leave all the other options as the defaults.
+1. Create the API and test it by going to `INVOKEURL/home`.
