@@ -21,7 +21,7 @@ func main() {
 	mux.Handle("/project.png", http.HandlerFunc(imageHandler))
 
 	if os.Getenv("AWS_LAMBDA_FUNCTION_NAME") != "" {
-		lambda.Start(func(ctx context.Context, req restadapter.Request) (*restadapter.Response, error) {
+		lambda.Start(func(ctx context.Context, req *restadapter.Request) (*restadapter.Response, error) {
 			log.Printf("Request: %#v", req)
 
 			// FYI: Request transformation.
