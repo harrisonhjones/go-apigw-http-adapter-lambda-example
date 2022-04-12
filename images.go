@@ -1,4 +1,4 @@
-package go_apigw_http_adapter_lambda_example
+package example
 
 /*
 The Go gopher was designed by Renee French. (http://reneefrench.blogspot.com/)

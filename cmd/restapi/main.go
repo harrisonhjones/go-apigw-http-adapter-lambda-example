@@ -16,12 +16,12 @@ import (
 
 func main() {
 	mux := http.NewServeMux()
-	mux.Handle("/home", http.HandlerFunc(IndexHandler))
-	mux.Handle("/favicon.svg", http.HandlerFunc(FaviconHandler))
-	mux.Handle("/project.png", http.HandlerFunc(ImageHandler))
+	mux.Handle("/home", http.HandlerFunc(indexHandler))
+	mux.Handle("/favicon.svg", http.HandlerFunc(faviconHandler))
+	mux.Handle("/project.png", http.HandlerFunc(imageHandler))
 
 	if os.Getenv("AWS_LAMBDA_FUNCTION_NAME") != "" {
-		lambda.Start(func(ctx context.Context, req restadapter.Request) (*restadapter.Response, error) {
+		lambda.Start(func(ctx context.Context, req *restadapter.Request) (*restadapter.Response, error) {
 			log.Printf("Request: %#v", req)
 
 			// FYI: Request transformation.
@@ -58,8 +58,8 @@ func main() {
 	}
 }
 
-func IndexHandler(writer http.ResponseWriter, _ *http.Request) {
-	fmt.Fprint(writer, `<!DOCTYPE html>
+func indexHandler(writer http.ResponseWriter, _ *http.Request) {
+	_, _ = fmt.Fprint(writer, `<!DOCTYPE html>
 <html>
   <head>
     <title>Hello World</title>
@@ -88,12 +88,12 @@ func IndexHandler(writer http.ResponseWriter, _ *http.Request) {
 `)
 }
 
-func FaviconHandler(writer http.ResponseWriter, _ *http.Request) {
+func faviconHandler(writer http.ResponseWriter, _ *http.Request) {
 	writer.Header().Set("content-type", "image/svg+xml")
-	writer.Write(example.Favicondotsvg)
+	_, _ = writer.Write(example.Favicondotsvg)
 }
 
-func ImageHandler(writer http.ResponseWriter, _ *http.Request) {
+func imageHandler(writer http.ResponseWriter, _ *http.Request) {
 	writer.Header().Set("content-type", "image/png")
-	writer.Write(example.Projectdotpng)
+	_, _ = writer.Write(example.Projectdotpng)
 }
